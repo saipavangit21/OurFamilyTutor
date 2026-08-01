@@ -185,15 +185,17 @@ const PASSAGES = {
 };
 
 // ---------- Storybook content ----------
+// classLevel 2: shorter pages, simple vocabulary. classLevel 4: longer pages,
+// richer vocabulary — "challenge" stories are the hardest tier.
 const STORYBOOKS = [
   {
     id: "bumble",
     title: "Bumble the Bunny's Big Hop",
     blurb: "The smallest bunny in the meadow learns that little hops still count.",
+    classLevel: 2,
     level: "First reads",
     color: COLORS.coral,
     colorDark: COLORS.coralDark,
-    emoji: "🐰",
     pages: [
       "Bumble was the smallest bunny in the whole meadow. All of his brothers and sisters could hop over the tall grass in one big jump, but Bumble could only hop a little way.",
       "\"I will never hop far,\" said Bumble sadly. He sat down next to a big grey rock and watched the other bunnies play in the sunshine.",
@@ -203,13 +205,29 @@ const STORYBOOKS = [
     ],
   },
   {
+    id: "pip",
+    title: "Pip the Firefly's First Light",
+    blurb: "A firefly who can't glow yet discovers where her light comes from.",
+    classLevel: 2,
+    level: "First reads",
+    color: COLORS.gold,
+    colorDark: COLORS.goldDark,
+    pages: [
+      "Pip was a tiny firefly who could not glow yet. All the other fireflies lit up the night sky, but Pip's little light stayed dark.",
+      "Every evening, Pip watched the others dance above the pond, blinking like tiny stars. She wished more than anything that she could glow too.",
+      "One night, Pip's grandmother told her a secret. \"Your light comes on when your heart feels warm and brave,\" she said softly.",
+      "The next evening, a baby duck got lost in the tall reeds. Pip felt brave, and she flew straight toward the frightened duckling to help it home.",
+      "As Pip flew, her tummy began to glow bright yellow for the very first time! From that night on, Pip's light shone the brightest of them all.",
+    ],
+  },
+  {
     id: "lighthouse",
     title: "The Lighthouse Keeper's Kite",
     blurb: "A keeper's daughter builds a kite to guide boats home on a foggy night.",
+    classLevel: 2,
     level: "Growing readers",
     color: COLORS.blue,
     colorDark: COLORS.blueDark,
-    emoji: "🪁",
     pages: [
       "On a rocky island far from shore, a girl named Wren lived with her father in a tall white lighthouse. Every night, he lit the great lamp so ships could find their way home safely.",
       "One evening, thick fog rolled in from the sea and covered the lighthouse light completely. Wren's father worried that no ship would be able to see it through the grey mist.",
@@ -219,13 +237,29 @@ const STORYBOOKS = [
     ],
   },
   {
+    id: "nutmeg",
+    title: "Nutmeg the Squirrel's Winter Plan",
+    blurb: "A squirrel who would rather play learns why planning ahead matters.",
+    classLevel: 2,
+    level: "Growing readers",
+    color: COLORS.green,
+    colorDark: COLORS.greenDark,
+    pages: [
+      "Nutmeg the squirrel loved playing in the autumn leaves more than anything else. While her friends busily gathered acorns for winter, Nutmeg chased butterflies and napped in the sun.",
+      "\"Winter is coming soon,\" warned her friend Hazel, dragging a big pile of nuts into her tree. Nutmeg just laughed and said there was plenty of time left to play.",
+      "Then one morning, Nutmeg woke up to find the whole forest covered in white snow. Her tummy growled loudly, but when she looked in her tree, she found it completely empty.",
+      "Hazel saw Nutmeg shivering outside and invited her in to share her winter stockpile of acorns and seeds. Nutmeg was grateful, but she felt embarrassed that she had not planned ahead.",
+      "The next autumn, Nutmeg was the very first squirrel to start gathering nuts for winter. She had learned that a little work in the sunshine could save a lot of worry in the snow.",
+    ],
+  },
+  {
     id: "clockmaker",
     title: "The Clockmaker Who Lost Time",
     blurb: "A distracted clockmaker discovers that the best moments can't be measured.",
+    classLevel: 4,
     level: "Confident readers",
     color: COLORS.gold,
     colorDark: COLORS.goldDark,
-    emoji: "⏰",
     pages: [
       "In a narrow shop at the end of Maple Street, a clockmaker named Mr. Higgins spent every hour fixing the gears and springs of other people's clocks. He was always in a hurry, checking his own pocket watch again and again.",
       "One rainy afternoon, a young boy came in carrying a broken cuckoo clock that had belonged to his grandmother. \"Can you fix it before her birthday?\" the boy asked. Mr. Higgins nodded quickly, already thinking of his next task.",
@@ -234,7 +268,172 @@ const STORYBOOKS = [
       "That night, Mr. Higgins hung a small sign in his window: \"Clocks mended here — but don't forget to lose track of time now and then.\" His customers always smiled when they read it.",
     ],
   },
+  {
+    id: "cartographer",
+    title: "The Cartographer's Missing Island",
+    blurb: "An apprentice mapmaker chases a rumor of an island that appears on no map.",
+    classLevel: 4,
+    level: "Confident readers",
+    color: COLORS.blue,
+    colorDark: COLORS.blueDark,
+    vocabulary: [
+      { word: "cartographer", def: "a person who draws or makes maps" },
+      { word: "coordinates", def: "a set of numbers that show an exact position on a map" },
+      { word: "voyage", def: "a long journey, especially by sea" },
+    ],
+    pages: [
+      "Elena had spent three years as an apprentice cartographer, carefully copying coastlines and mountain ranges onto crisp sheets of parchment. She dreamed of the day she might draw a map of somewhere no one had charted before, rather than tracing the same familiar harbors again and again. Her master, an elderly mapmaker named Master Reyes, often reminded her that patience was the true measure of a skilled cartographer.",
+      "One rainy afternoon, while sorting through a crate of old ship logs, Elena discovered a torn page describing an island that appeared on no existing map. The sailor who had written it claimed to have anchored there for three days before a storm forced his ship away, and he swore the island was surrounded by cliffs the color of amber. Elena's hands trembled with excitement as she copied down the coordinates before the ink could fade any further.",
+      "She brought the page to Master Reyes, who studied it for a long moment before sighing. \"Sailors tell tall tales, Elena, especially after weeks at sea,\" he said, though something in his eyes suggested he was not entirely convinced of his own words. Still, he agreed to let her sail with the next merchant ship heading in that direction, on the condition that she document everything with complete accuracy.",
+      "The voyage took eleven days, and Elena spent most of them sketching cloud formations and testing her instruments against the ship's own charts. On the twelfth morning, exactly where the torn page had promised, amber-colored cliffs rose out of the mist like something from a dream. The sailors aboard grew quiet, and even the captain admitted he had never seen this stretch of coastline before.",
+      "Elena worked from dawn until dusk, measuring the coastline, sketching the strange orange rock formations, and recording the position of a freshwater spring near the shore. She named the island Isla Ambar, in honor of its glowing cliffs, and carefully noted every detail so that no sailor would ever have to discover it by accident again.",
+      "When she returned home, Master Reyes examined her finished map for a long while before finally smiling. \"You have done something I never managed in forty years of mapmaking,\" he admitted, hanging her chart proudly on his study wall. Elena understood then that patience and curiosity were not opposites at all, but two halves of the very same gift.",
+    ],
+  },
+  {
+    id: "alchemist",
+    title: "The Alchemist's Apprentice and the Silver Comet",
+    blurb: "A once-in-a-lifetime comet forces an apprentice into a night of urgent discovery.",
+    classLevel: 4,
+    level: "Challenge readers",
+    color: COLORS.coral,
+    colorDark: COLORS.coralDark,
+    vocabulary: [
+      { word: "meticulously", def: "in a very careful and precise way" },
+      { word: "skeptical", def: "having doubts; not easily convinced" },
+      { word: "celestial", def: "relating to the sky or outer space" },
+      { word: "combustible", def: "able to catch fire and burn easily" },
+    ],
+    pages: [
+      "Iris had apprenticed under the reclusive alchemist Master Thorne for nearly two years, meticulously grinding minerals into powders and memorizing the properties of substances most people had never heard of. She was accustomed to his gruff instructions and his refusal to explain the purpose behind any experiment until it was already finished. What she was not accustomed to, however, was being woken in the middle of the night by his frantic pounding on her bedroom door.",
+      "\"The comet,\" he said breathlessly, thrusting a leather notebook into her hands. \"It returns tonight, precisely as the old astronomical charts predicted, and its tail carries traces of a mineral unlike anything found on this earth.\" Iris blinked the sleep from her eyes, uncertain whether to be skeptical or thrilled, and decided in that moment to simply be both.",
+      "They climbed to the highest tower of Thorne's crumbling estate, hauling brass instruments and glass collection vials up the narrow spiral staircase. The night air was bitterly cold, and Iris's fingers ached as she helped calibrate the telescope according to Thorne's precise, whispered instructions. Somewhere below them, an owl called out into the darkness, as though even the forest sensed something extraordinary was about to happen.",
+      "When the comet finally streaked across the sky, it left behind a faint shimmer of silvery dust that drifted slowly toward the earth like falling snow. Thorne worked with astonishing speed, directing Iris to hold collection trays at precise angles while he recited calculations under his breath. She had never seen her stern, unreadable master look so completely alive.",
+      "By dawn, they had gathered only a few grains of the celestial dust, barely enough to fill the bottom of a small glass vial, yet Thorne treated it as though it were the greatest treasure in the known world. He explained, finally, that this mineral was rumored to be combustible in ways that could revolutionize how alchemists understood heat and light, though decades of careful, patient study still lay ahead.",
+      "Iris realized, watching her exhausted master carefully seal the vial, that this single night of chasing a comet had taught her more about the true nature of discovery than two entire years of grinding powders ever had. Some knowledge, she understood now, could not be rushed — it had to be chased across rooftops in the freezing dark, one fleeting moment at a time.",
+    ],
+  },
+  {
+    id: "telegraph",
+    title: "The Last Telegram Operator",
+    blurb: "When a storm cuts the phone lines, an old-fashioned skill becomes a lifeline.",
+    classLevel: 4,
+    level: "Challenge readers",
+    color: COLORS.green,
+    colorDark: COLORS.greenDark,
+    vocabulary: [
+      { word: "telegraph", def: "a system for sending messages over a wire using coded electric signals" },
+      { word: "relentless", def: "never stopping or letting up" },
+      { word: "obsolete", def: "no longer used because something newer has replaced it" },
+    ],
+    pages: [
+      "Clara was seventeen when she took over her grandfather's telegraph office in the small mountain town of Ashford, tapping out messages in Morse code long after most of the country had already switched to telephones. Her grandfather had insisted there was a peculiar honesty in a message stripped down to nothing but dots and dashes. Clara had never expected that skill to become her livelihood, yet here she was, alone in the small wooden office every evening, listening to the click of the receiver.",
+      "One October evening, during a storm that had knocked out the telephone lines across three counties, an urgent message came through requesting medical supplies for a flooded village twelve miles up the mountain. Clara realized immediately that the telegraph, considered old-fashioned by nearly everyone in Ashford, was now the only line of communication still working in the entire region.",
+      "She spent the next six hours relaying messages between doctors, supply wagons, and worried families, her fingers aching from the relentless tapping of the telegraph key. Twice the line crackled with static so severe she feared it might cut out entirely, and each time she held her breath until the connection steadied itself again.",
+      "By midnight, a wagon loaded with bandages, medicine, and blankets finally set off toward the flooded village, guided entirely by directions Clara had painstakingly relayed through the storm. She did not learn until the following week that her tapped-out messages had likely saved several lives, a fact that left her strangely speechless for a girl who spent her days speaking fluently in dots and dashes.",
+      "The local newspaper wanted to write a story calling her a hero, but Clara insisted she had simply done what her grandfather had trained her to do: listen carefully, and never let a message go unanswered. Still, she noticed that afterward, townspeople who once teased her for keeping such an outdated machine began stopping by simply to admire it.",
+      "Years later, long after telephones and radios had made the telegraph completely obsolete, Clara kept her grandfather's brass key polished and working in the corner of her sitting room. She liked to tell visitors that the most modern technology in the world could still fail during a storm, but a message tapped out with patience and care rarely ever would.",
+    ],
+  },
 ];
+
+// ---------- Storybook illustrations (inline SVG, no external assets) ----------
+function StoryArt({ id, color, colorDark, size = 96 }) {
+  const shapes = {
+    bumble: (
+      <>
+        <ellipse cx="36" cy="26" rx="8" ry="18" fill={color} />
+        <ellipse cx="60" cy="26" rx="8" ry="18" fill={color} />
+        <ellipse cx="36" cy="28" rx="4" ry="12" fill="#fff" opacity="0.55" />
+        <ellipse cx="60" cy="28" rx="4" ry="12" fill="#fff" opacity="0.55" />
+        <circle cx="48" cy="58" r="24" fill={color} />
+        <circle cx="40" cy="54" r="3.2" fill="#2E3A59" />
+        <circle cx="56" cy="54" r="3.2" fill="#2E3A59" />
+        <ellipse cx="48" cy="62" rx="4" ry="3" fill="#fff" />
+      </>
+    ),
+    pip: (
+      <>
+        <circle cx="24" cy="20" r="2" fill={color} opacity="0.6" />
+        <circle cx="70" cy="16" r="1.6" fill={color} opacity="0.6" />
+        <circle cx="76" cy="34" r="1.2" fill={color} opacity="0.6" />
+        <ellipse cx="46" cy="52" rx="12" ry="16" fill="#2E3A59" />
+        <ellipse cx="34" cy="44" rx="9" ry="5" fill={color} opacity="0.5" transform="rotate(-20 34 44)" />
+        <ellipse cx="58" cy="44" rx="9" ry="5" fill={color} opacity="0.5" transform="rotate(20 58 44)" />
+        <circle cx="46" cy="66" r="8" fill={color} />
+      </>
+    ),
+    lighthouse: (
+      <>
+        <path d="M60 74 Q48 78 36 74 L40 30 Q48 22 56 30 Z" fill="#fff" stroke={color} strokeWidth="2.5" />
+        <rect x="41" y="42" width="14" height="6" fill={color} />
+        <rect x="41" y="58" width="14" height="6" fill={color} />
+        <polygon points="48,14 40,30 56,30" fill={colorDark} />
+        <path d="M56 26 L80 18" stroke={color} strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
+        <path d="M20 78 Q34 70 48 78 T76 78" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
+      </>
+    ),
+    nutmeg: (
+      <>
+        <rect x="44" y="46" width="8" height="28" rx="3" fill={colorDark} />
+        <circle cx="48" cy="34" r="20" fill={color} opacity="0.9" />
+        <path d="M62 50 Q78 46 74 66 Q70 78 58 70" fill={color} />
+        <circle cx="30" cy="70" r="5" fill={colorDark} />
+        <circle cx="40" cy="76" r="5" fill={colorDark} />
+      </>
+    ),
+    clockmaker: (
+      <>
+        <circle cx="48" cy="48" r="26" fill="#fff" stroke={color} strokeWidth="3" />
+        <circle cx="48" cy="48" r="2.5" fill={colorDark} />
+        <line x1="48" y1="48" x2="48" y2="30" stroke={colorDark} strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="48" y1="48" x2="60" y2="54" stroke={colorDark} strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="48" cy="24" r="1.6" fill={color} />
+        <circle cx="48" cy="72" r="1.6" fill={color} />
+        <circle cx="24" cy="48" r="1.6" fill={color} />
+        <circle cx="72" cy="48" r="1.6" fill={color} />
+      </>
+    ),
+    cartographer: (
+      <>
+        <rect x="18" y="22" width="60" height="46" rx="4" fill="#fff" stroke={color} strokeWidth="2.5" />
+        <line x1="38" y1="22" x2="38" y2="68" stroke={color} strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
+        <line x1="58" y1="22" x2="58" y2="68" stroke={color} strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
+        <path d="M44 34 Q56 30 60 42 Q62 52 50 54 Q40 55 42 44 Z" fill={color} opacity="0.8" />
+        <circle cx="27" cy="34" r="5" fill="none" stroke={colorDark} strokeWidth="1.6" />
+        <line x1="27" y1="30" x2="27" y2="38" stroke={colorDark} strokeWidth="1.3" />
+        <line x1="23" y1="34" x2="31" y2="34" stroke={colorDark} strokeWidth="1.3" />
+      </>
+    ),
+    alchemist: (
+      <>
+        <circle cx="60" cy="30" r="9" fill={color} />
+        <path d="M54 34 L20 66" stroke={color} strokeWidth="3" strokeLinecap="round" opacity="0.35" />
+        <path d="M58 38 L30 68" stroke={color} strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+        <circle cx="26" cy="24" r="1.6" fill={colorDark} />
+        <circle cx="38" cy="16" r="1.2" fill={colorDark} />
+        <circle cx="16" cy="46" r="1.4" fill={colorDark} />
+        <polygon points="38,78 58,78 50,58 46,58" fill={colorDark} opacity="0.85" />
+      </>
+    ),
+    telegraph: (
+      <>
+        <rect x="22" y="56" width="52" height="16" rx="3" fill={colorDark} />
+        <rect x="30" y="44" width="8" height="14" rx="2" fill={color} />
+        <circle cx="34" cy="42" r="6" fill={color} />
+        <path d="M54 30 L46 46 L54 46 L44 62" stroke={colorDark} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <polygon points="14,72 30,50 46,72" fill={color} opacity="0.3" />
+        <polygon points="40,72 58,44 78,72" fill={color} opacity="0.45" />
+      </>
+    ),
+  };
+  return (
+    <svg width={size} height={size} viewBox="0 0 96 96" style={{ display: "block" }}>
+      <circle cx="48" cy="48" r="48" fill={color} opacity="0.12" />
+      {shapes[id]}
+    </svg>
+  );
+}
 
 // ---------- shared read-aloud hook ----------
 function useReadAloud(text) {
@@ -748,19 +947,26 @@ function EnglishView({ onBack }) {
 
 // ---------- Storybook view ----------
 function StorybookView({ onBack }) {
-  const [storyIdx, setStoryIdx] = useState(null);
+  const [classLevel, setClassLevel] = useState(2);
+  const [storyId, setStoryId] = useState(null);
   const [pageIdx, setPageIdx] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const story = storyIdx !== null ? STORYBOOKS[storyIdx] : null;
+  const storiesForLevel = useMemo(() => STORYBOOKS.filter((s) => s.classLevel === classLevel), [classLevel]);
+  const story = storyId !== null ? STORYBOOKS.find((s) => s.id === storyId) : null;
   const pageText = story ? story.pages[pageIdx] : "";
   const ra = useReadAloud(pageText);
   const { listening, wordStatus, showSummary, start, stop, pointerRef, reviewWords, readCorrect, readWrong, unsupported } = ra;
 
-  const openStory = (i) => {
-    setStoryIdx(i);
+  const openStory = (id) => {
+    setStoryId(id);
     setPageIdx(0);
     setFinished(false);
+  };
+
+  const changeLevel = (lvl) => {
+    setClassLevel(lvl);
+    setStoryId(null);
   };
 
   const goPage = (dir) => {
@@ -776,9 +982,29 @@ function StorybookView({ onBack }) {
 
   if (!story) {
     return (
-      <div style={{ maxWidth: 760, margin: "0 auto" }}>
+      <div style={{ maxWidth: 780, margin: "0 auto" }}>
         <div className="no-print" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
           <button onClick={onBack} style={backBtnStyle}><ArrowLeft size={16} /> Home</button>
+          <div style={{ display: "flex", gap: 8 }}>
+            {[2, 4].map((lvl) => (
+              <button
+                key={lvl}
+                onClick={() => changeLevel(lvl)}
+                style={{
+                  fontFamily: "'Baloo 2', sans-serif",
+                  fontWeight: 700,
+                  padding: "8px 18px",
+                  borderRadius: 999,
+                  border: `2px solid ${lvl === 2 ? COLORS.green : COLORS.blue}`,
+                  background: classLevel === lvl ? (lvl === 2 ? COLORS.green : COLORS.blue) : "transparent",
+                  color: classLevel === lvl ? "#fff" : lvl === 2 ? COLORS.greenDark : COLORS.blueDark,
+                  cursor: "pointer",
+                }}
+              >
+                Class {lvl}
+              </button>
+            ))}
+          </div>
         </div>
         <div style={{ textAlign: "center", marginBottom: 28 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: COLORS.gold, marginBottom: 8 }}>
@@ -787,13 +1013,16 @@ function StorybookView({ onBack }) {
           </div>
           <h1 style={{ fontFamily: "'Baloo 2', sans-serif", fontWeight: 800, fontSize: 30, color: COLORS.ink, margin: "0 0 8px" }}>Pick a story to read aloud</h1>
           <p style={{ fontFamily: "'Lexend', sans-serif", color: COLORS.inkSoft, fontSize: 14 }}>
-            Listen to each page, then read it back — the reading buddy highlights every word green as you get it right.
+            {classLevel === 2
+              ? "Short, simple pages for early readers."
+              : "Longer pages with richer vocabulary — Challenge stories are the hardest."}
+            {" "}Listen to each page, then read it back — the reading buddy highlights every word green as you get it right.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 18 }}>
-          {STORYBOOKS.map((s, i) => (
-            <button key={s.id} onClick={() => openStory(i)} style={{ ...pathCardStyle, borderColor: s.color, textAlign: "left", alignItems: "flex-start" }}>
-              <div style={{ fontSize: 40 }}>{s.emoji}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(210px,1fr))", gap: 18 }}>
+          {storiesForLevel.map((s) => (
+            <button key={s.id} onClick={() => openStory(s.id)} style={{ ...pathCardStyle, borderColor: s.color, textAlign: "left", alignItems: "flex-start" }}>
+              <StoryArt id={s.id} color={s.color} colorDark={s.colorDark} size={64} />
               <div style={{ fontFamily: "'Baloo 2', sans-serif", fontWeight: 700, fontSize: 17, color: s.colorDark, marginTop: 10 }}>{s.title}</div>
               <div style={{ fontFamily: "'Lexend', sans-serif", fontSize: 12, color: COLORS.inkSoft, marginTop: 4 }}>{s.blurb}</div>
               <div style={{ marginTop: 10, fontSize: 11, fontWeight: 700, color: s.colorDark, background: "#fff", border: `1px solid ${s.color}`, borderRadius: 999, padding: "3px 10px", fontFamily: "'Baloo 2', sans-serif" }}>
@@ -821,7 +1050,7 @@ function StorybookView({ onBack }) {
             <button onClick={() => { setPageIdx(0); setFinished(false); }} style={{ ...primaryBtnStyle, background: story.color }}>
               <RotateCcw size={16} /> Read again
             </button>
-            <button onClick={() => setStoryIdx(null)} style={secondaryBtnStyle}>
+            <button onClick={() => setStoryId(null)} style={secondaryBtnStyle}>
               <Library size={16} /> Storybook shelf
             </button>
           </div>
@@ -836,7 +1065,7 @@ function StorybookView({ onBack }) {
   return (
     <div style={{ maxWidth: 760, margin: "0 auto" }}>
       <div className="no-print" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
-        <button onClick={() => setStoryIdx(null)} style={backBtnStyle}><ArrowLeft size={16} /> Storybook shelf</button>
+        <button onClick={() => setStoryId(null)} style={backBtnStyle}><ArrowLeft size={16} /> Storybook shelf</button>
         <div style={{ display: "flex", gap: 6 }}>
           {story.pages.map((_, i) => (
             <span key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: i === pageIdx ? accent : COLORS.line }} />
@@ -846,11 +1075,13 @@ function StorybookView({ onBack }) {
 
       <div style={{ background: COLORS.paper, borderRadius: 16, border: `1px solid ${COLORS.line}`, overflow: "hidden" }}>
         <TornHeader color={accent}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontSize: 30 }}>{story.emoji}</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ background: "#fff", borderRadius: "50%", padding: 4 }}>
+              <StoryArt id={story.id} color={accent} colorDark={accentDark} size={40} />
+            </div>
             <div>
               <div style={{ fontSize: 20, fontWeight: 800 }}>{story.title}</div>
-              <div style={{ fontSize: 13, opacity: 0.9, fontFamily: "'Lexend', sans-serif" }}>Page {pageIdx + 1} of {story.pages.length}</div>
+              <div style={{ fontSize: 13, opacity: 0.9, fontFamily: "'Lexend', sans-serif" }}>{story.level} · Page {pageIdx + 1} of {story.pages.length}</div>
             </div>
           </div>
         </TornHeader>
@@ -880,9 +1111,25 @@ function StorybookView({ onBack }) {
             )}
           </div>
 
-          <p style={{ fontSize: 19, lineHeight: 2, color: COLORS.ink, fontFamily: "'Lexend', sans-serif" }}>
+          <p style={{ fontSize: classLevel === 2 ? 19 : 17, lineHeight: 2, color: COLORS.ink, fontFamily: "'Lexend', sans-serif" }}>
             <HighlightedText text={pageText} wordStatus={wordStatus} listening={listening} pointerRef={pointerRef} accent={accent} ink={COLORS.ink} />
           </p>
+
+          {story.vocabulary && (
+            <div style={{ marginTop: 16, marginBottom: 4 }}>
+              <div style={{ fontFamily: "'Baloo 2', sans-serif", fontWeight: 700, color: accentDark, fontSize: 13, marginBottom: 8 }}>
+                Words to know in this story
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 8 }}>
+                {story.vocabulary.map((v) => (
+                  <div key={v.word} style={{ background: "#FAF7EF", border: `1px solid ${COLORS.line}`, borderRadius: 10, padding: "8px 10px" }}>
+                    <div style={{ fontWeight: 600, color: COLORS.ink, fontSize: 13 }}>{v.word}</div>
+                    <div style={{ fontSize: 12, color: COLORS.inkSoft, marginTop: 2 }}>{v.def}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {showSummary && (
             <div className="no-print" style={{ background: "#FAF7EF", border: `1px solid ${COLORS.line}`, borderRadius: 10, padding: "12px 14px", marginTop: 8 }}>

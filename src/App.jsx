@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
-import { Calculator, BookOpen, Printer, RotateCcw, CheckCircle2, XCircle, Star, ArrowLeft, ChevronLeft, ChevronRight, Sparkles, Mic, Square, Volume2, Library, PartyPopper } from "lucide-react";
+import { Calculator, BookOpen, Printer, RotateCcw, CheckCircle2, XCircle, Star, ArrowLeft, ChevronLeft, ChevronRight, Sparkles, Mic, Square, Volume2, Library, PartyPopper, Lock } from "lucide-react";
 
 const FONTS = `
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Lexend:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap');
@@ -25,6 +25,7 @@ const COLORS = {
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const pick = (arr) => arr[randInt(0, arr.length - 1)];
 const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+const lcm = (a, b) => (a * b) / gcd(a, b);
 const reduceFraction = (n, d) => {
   const g = gcd(n, d) || 1;
   return [n / g, d / g];
@@ -37,7 +38,58 @@ const NAMES = ["Maya", "Leo", "Zara", "Finn", "Nina", "Omar", "Ava", "Kofi", "Pr
 const THINGS2 = ["apples", "stickers", "marbles", "crayons", "shells"];
 const THINGS4 = ["pencils", "candies", "postcards", "stamps", "beads"];
 
-function genClass2(id) {
+const LEVEL_NAMES = ["Starter", "Builder", "Champion"];
+const MAX_LEVEL = LEVEL_NAMES.length;
+
+function genClass2(id, level) {
+  if (level === 1) {
+    const type = pick(["add", "add", "sub", "sub", "wordAdd", "wordSub"]);
+    if (type === "add") {
+      const a = randInt(4, 20), b = randInt(3, 15);
+      return { id, prompt: `${a} + ${b} =`, answer: String(a + b) };
+    }
+    if (type === "sub") {
+      const a = randInt(10, 25), b = randInt(2, a - 1);
+      return { id, prompt: `${a} - ${b} =`, answer: String(a - b) };
+    }
+    const name = pick(NAMES), name2 = pick(NAMES.filter((n) => n !== name)), thing = pick(THINGS2);
+    if (type === "wordAdd") {
+      const a = randInt(4, 15), b = randInt(2, 10);
+      return { id, prompt: `${name} has ${a} ${thing}. ${name2} gives ${name} ${b} more. How many ${thing} does ${name} have now?`, answer: String(a + b), isWord: true };
+    }
+    const a = randInt(8, 20), b = randInt(2, a - 2);
+    return { id, prompt: `${name} had ${a} ${thing}. ${name} gave away ${b} ${thing}. How many ${thing} are left?`, answer: String(a - b), isWord: true };
+  }
+
+  if (level === 3) {
+    const type = pick(["add", "sub", "mult", "mult", "div", "wordAdd", "wordSub"]);
+    if (type === "add") {
+      const a = randInt(50, 199), b = randInt(20, 150);
+      return { id, prompt: `${a} + ${b} =`, answer: String(a + b) };
+    }
+    if (type === "sub") {
+      const a = randInt(100, 300), b = randInt(20, a - 10);
+      return { id, prompt: `${a} - ${b} =`, answer: String(a - b) };
+    }
+    if (type === "mult") {
+      const a = randInt(3, 9), b = randInt(2, 9);
+      return { id, prompt: `${a} x ${b} =`, answer: String(a * b) };
+    }
+    if (type === "div") {
+      const b = randInt(2, 5), q = randInt(2, 9), a = b * q;
+      return { id, prompt: `${a} ÷ ${b} =`, answer: String(q) };
+    }
+    const name = pick(NAMES), name2 = pick(NAMES.filter((n) => n !== name)), thing = pick(THINGS2);
+    if (type === "wordAdd") {
+      const a = randInt(30, 90), b = randInt(15, 60);
+      return { id, prompt: `${name} has ${a} ${thing}. ${name2} gives ${name} ${b} more. How many ${thing} does ${name} have now?`, answer: String(a + b), isWord: true };
+    }
+    const a = randInt(50, 120), b = randInt(15, 80);
+    const bb = Math.min(b, a - 5);
+    return { id, prompt: `${name} had ${a} ${thing}. ${name} gave away ${bb} ${thing}. How many ${thing} are left?`, answer: String(a - bb), isWord: true };
+  }
+
+  // level 2 — Builder
   const type = pick(["add", "add", "sub", "sub", "mult", "wordAdd", "wordSub"]);
   if (type === "add") {
     const a = randInt(10, 60), b = randInt(10, 38 - Math.max(0, a - 60));
@@ -61,7 +113,68 @@ function genClass2(id) {
   return { id, prompt: `${name} had ${a} ${thing}. ${name} gave away ${b} ${thing}. How many ${thing} are left?`, answer: String(a - b), isWord: true };
 }
 
-function genClass4(id) {
+function genClass4(id, level) {
+  if (level === 2) {
+    const type = pick(["mult", "mult", "div", "div", "fracUnlike", "fracUnlike", "wordTwoStep"]);
+    if (type === "mult") {
+      if (pick([true, false])) {
+        const a = randInt(100, 499), b = randInt(2, 9);
+        return { id, prompt: `${a} x ${b} =`, answer: String(a * b) };
+      }
+      const a = randInt(11, 40), b = randInt(11, 25);
+      return { id, prompt: `${a} x ${b} =`, answer: String(a * b) };
+    }
+    if (type === "div") {
+      const b = randInt(3, 12), q = randInt(8, 20), r = pick([0, 0, randInt(1, b - 1)]);
+      const a = b * q + r;
+      return { id, prompt: `${a} ÷ ${b} =`, answer: r === 0 ? String(q) : `${q} r ${r}` };
+    }
+    if (type === "fracUnlike") {
+      const denoms = [2, 3, 4, 5, 6, 8, 10];
+      const d1 = pick(denoms), d2 = pick(denoms.filter((d) => d !== d1));
+      const n1 = randInt(1, d1 - 1), n2 = randInt(1, d2 - 1);
+      const common = lcm(d1, d2);
+      const num = n1 * (common / d1) + n2 * (common / d2);
+      const [rn, rd] = reduceFraction(num, common);
+      return { id, prompt: `${n1}/${d1} + ${n2}/${d2} =`, answer: `${rn}/${rd}` };
+    }
+    const name = pick(NAMES), name2 = pick(NAMES.filter((n) => n !== name)), thing = pick(THINGS4);
+    const a = randInt(4, 9), b = randInt(8, 20);
+    const total = a * b, sold = randInt(5, total - 5);
+    return { id, prompt: `${name} bought ${a} boxes of ${thing} with ${b} in each box. ${name} then gave ${sold} ${thing} to ${name2}. How many ${thing} does ${name} have left?`, answer: String(total - sold), isWord: true };
+  }
+
+  if (level === 3) {
+    const type = pick(["mult", "div", "fracSub", "fracSub", "wordMultAdd", "wordMultAdd"]);
+    if (type === "mult") {
+      const a = randInt(15, 45), b = randInt(15, 35);
+      return { id, prompt: `${a} x ${b} =`, answer: String(a * b) };
+    }
+    if (type === "div") {
+      const b = randInt(4, 15), q = randInt(12, 25), r = pick([0, 0, randInt(1, b - 1)]);
+      const a = b * q + r;
+      return { id, prompt: `${a} ÷ ${b} =`, answer: r === 0 ? String(q) : `${q} r ${r}` };
+    }
+    if (type === "fracSub") {
+      const denoms = [2, 3, 4, 5, 6, 8, 10];
+      let d1 = pick(denoms), d2 = pick(denoms.filter((d) => d !== d1));
+      let n1 = randInt(1, d1 - 1), n2 = randInt(1, d2 - 1);
+      const common = lcm(d1, d2);
+      let valA = n1 * (common / d1), valB = n2 * (common / d2);
+      if (valA <= valB) {
+        [n1, n2] = [n2, n1];
+        [d1, d2] = [d2, d1];
+        [valA, valB] = [valB, valA];
+      }
+      const [rn, rd] = reduceFraction(valA - valB, common);
+      return { id, prompt: `${n1}/${d1} - ${n2}/${d2} =`, answer: `${rn}/${rd}` };
+    }
+    const name = pick(NAMES), name2 = pick(NAMES.filter((n) => n !== name)), thing = pick(THINGS4);
+    const a = randInt(4, 9), b = randInt(8, 20), c = randInt(5, 30);
+    return { id, prompt: `${name} has ${a} bags of ${thing} with ${b} in each bag. ${name2} gives ${name} ${c} more ${thing}. How many ${thing} does ${name} have now?`, answer: String(a * b + c), isWord: true };
+  }
+
+  // level 1 — Starter
   const type = pick(["mult", "mult", "div", "div", "frac", "wordMult", "wordDiv"]);
   if (type === "mult") {
     const a = randInt(12, 89), b = randInt(2, 9);
@@ -87,9 +200,27 @@ function genClass4(id) {
   return { id, prompt: `${name} has ${a} ${thing} to share equally among ${b} friends. How many does each friend get?`, answer: String(q), isWord: true };
 }
 
-function makeWorksheet(classLevel) {
+function makeWorksheet(classLevel, level) {
   const gen = classLevel === 2 ? genClass2 : genClass4;
-  return Array.from({ length: 10 }, (_, i) => gen(i));
+  return Array.from({ length: 10 }, (_, i) => gen(i, level));
+}
+
+// ---------- Maths progress (persisted so kids keep their unlocked level) ----------
+const PROGRESS_KEY = "flt-maths-progress";
+function loadMathsProgress() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+    return { 2: raw?.[2] || 1, 4: raw?.[4] || 1 };
+  } catch {
+    return { 2: 1, 4: 1 };
+  }
+}
+function saveMathsProgress(progress) {
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+  } catch {
+    // storage unavailable (e.g. private browsing) — progress just won't persist
+  }
 }
 
 // ---------- English content ----------
@@ -623,36 +754,59 @@ function Dashes({ color }) {
 
 // ---------- Maths view ----------
 function MathsView({ onBack }) {
+  const [progress, setProgress] = useState(() => loadMathsProgress());
   const [classLevel, setClassLevel] = useState(2);
-  const [worksheet, setWorksheet] = useState(() => makeWorksheet(2));
+  const [level, setLevel] = useState(() => progress[2]);
+  const [worksheet, setWorksheet] = useState(() => makeWorksheet(2, progress[2]));
   const [answers, setAnswers] = useState({});
   const [checked, setChecked] = useState(false);
   const [includeKey, setIncludeKey] = useState(false);
+  const [leveledUp, setLeveledUp] = useState(false);
 
   const accent = classLevel === 2 ? COLORS.green : COLORS.blue;
   const accentDark = classLevel === 2 ? COLORS.greenDark : COLORS.blueDark;
+  const unlockedLevel = progress[classLevel];
 
   const score = useMemo(() => {
     if (!checked) return 0;
     return worksheet.filter((p) => (answers[p.id] || "").trim().toLowerCase() === p.answer.toLowerCase()).length;
   }, [checked, worksheet, answers]);
 
-  const regenerate = (lvl) => {
-    setClassLevel(lvl);
-    setWorksheet(makeWorksheet(lvl));
+  const regenerate = (cls, lvl) => {
+    setClassLevel(cls);
+    setLevel(lvl);
+    setWorksheet(makeWorksheet(cls, lvl));
     setAnswers({});
     setChecked(false);
+    setLeveledUp(false);
+  };
+
+  const changeClass = (cls) => regenerate(cls, progress[cls]);
+  const changeLevelSelect = (lvl) => {
+    if (lvl <= unlockedLevel) regenerate(classLevel, lvl);
+  };
+
+  const checkAnswers = () => {
+    setChecked(true);
+    const correctCount = worksheet.filter((p) => (answers[p.id] || "").trim().toLowerCase() === p.answer.toLowerCase()).length;
+    if (correctCount / worksheet.length >= 0.8 && level === unlockedLevel && level < MAX_LEVEL) {
+      const next = level + 1;
+      const newProgress = { ...progress, [classLevel]: next };
+      setProgress(newProgress);
+      saveMathsProgress(newProgress);
+      setLeveledUp(true);
+    }
   };
 
   return (
     <div style={{ maxWidth: 760, margin: "0 auto" }}>
-      <div className="no-print" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
+      <div className="no-print" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
         <button onClick={onBack} style={backBtnStyle}><ArrowLeft size={16} /> Home</button>
         <div style={{ display: "flex", gap: 8 }}>
           {[2, 4].map((lvl) => (
             <button
               key={lvl}
-              onClick={() => regenerate(lvl)}
+              onClick={() => changeClass(lvl)}
               style={{
                 fontFamily: "'Baloo 2', sans-serif",
                 fontWeight: 700,
@@ -670,13 +824,47 @@ function MathsView({ onBack }) {
         </div>
       </div>
 
+      <div className="no-print" style={{ display: "flex", gap: 8, marginBottom: 18, flexWrap: "wrap" }}>
+        {[1, 2, 3].map((lvl) => {
+          const locked = lvl > unlockedLevel;
+          const cleared = lvl < unlockedLevel;
+          const active = lvl === level;
+          return (
+            <button
+              key={lvl}
+              onClick={() => changeLevelSelect(lvl)}
+              disabled={locked}
+              title={locked ? "Score 8/10 or better to unlock this level" : ""}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                fontFamily: "'Baloo 2', sans-serif",
+                fontWeight: 700,
+                fontSize: 13,
+                padding: "7px 14px",
+                borderRadius: 999,
+                border: `2px solid ${active ? accent : COLORS.line}`,
+                background: active ? accent : "#fff",
+                color: active ? "#fff" : locked ? COLORS.inkSoft : accentDark,
+                cursor: locked ? "default" : "pointer",
+                opacity: locked ? 0.55 : 1,
+              }}
+            >
+              {locked ? <Lock size={13} /> : cleared ? <Star size={13} fill={active ? "#fff" : accentDark} /> : null}
+              Level {lvl} · {LEVEL_NAMES[lvl - 1]}
+            </button>
+          );
+        })}
+      </div>
+
       <div style={{ background: COLORS.paper, borderRadius: 16, border: `1px solid ${COLORS.line}`, overflow: "hidden" }}>
         <TornHeader color={accent}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <Calculator size={26} />
             <div>
               <div style={{ fontSize: 22, fontWeight: 800 }}>Maths worksheet</div>
-              <div style={{ fontSize: 13, opacity: 0.9, fontFamily: "'Lexend', sans-serif" }}>Class {classLevel} · 10 problems</div>
+              <div style={{ fontSize: 13, opacity: 0.9, fontFamily: "'Lexend', sans-serif" }}>Class {classLevel} · Level {level} {LEVEL_NAMES[level - 1]} · 10 problems</div>
             </div>
           </div>
         </TornHeader>
@@ -726,10 +914,10 @@ function MathsView({ onBack }) {
           </div>
 
           <div className="no-print" style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 22, flexWrap: "wrap" }}>
-            <button onClick={() => setChecked(true)} style={{ ...primaryBtnStyle, background: accent }}>
+            <button onClick={checkAnswers} style={{ ...primaryBtnStyle, background: accent }}>
               <CheckCircle2 size={16} /> Check answers
             </button>
-            <button onClick={() => regenerate(classLevel)} style={secondaryBtnStyle}>
+            <button onClick={() => regenerate(classLevel, level)} style={secondaryBtnStyle}>
               <RotateCcw size={16} /> New worksheet
             </button>
             <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: COLORS.inkSoft }}>
@@ -741,6 +929,27 @@ function MathsView({ onBack }) {
             </button>
             {checked && <Stamp score={score} total={worksheet.length} />}
           </div>
+
+          {checked && leveledUp && (
+            <div className="no-print" style={{ display: "flex", alignItems: "center", gap: 10, background: "#FAF7EF", border: `1px solid ${COLORS.line}`, borderRadius: 10, padding: "12px 14px", marginTop: 14 }}>
+              <PartyPopper size={22} color={accentDark} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: "'Baloo 2', sans-serif", fontWeight: 700, color: accentDark, fontSize: 14 }}>
+                  Level up! Level {level + 1} · {LEVEL_NAMES[level]} unlocked
+                </div>
+                <div style={{ fontSize: 12, color: COLORS.inkSoft }}>Great scoring — ready for the next challenge?</div>
+              </div>
+              <button onClick={() => regenerate(classLevel, level + 1)} style={{ ...primaryBtnStyle, background: accent }}>
+                Try Level {level + 1}
+              </button>
+            </div>
+          )}
+
+          {checked && !leveledUp && score / worksheet.length >= 0.8 && level === MAX_LEVEL && (
+            <div className="no-print" style={{ fontSize: 13, color: accentDark, marginTop: 14, fontFamily: "'Baloo 2', sans-serif", fontWeight: 700 }}>
+              🏆 Champion level mastered — amazing work!
+            </div>
+          )}
 
           {includeKey && (
             <div className="print-only" style={{ display: "none", marginTop: 24, paddingTop: 16, borderTop: `2px dashed ${COLORS.line}` }}>

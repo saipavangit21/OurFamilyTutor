@@ -1,6 +1,8 @@
 # Family Learning Trail
 
-A maths and reading tutor for kids — maths worksheets for class 2 and class 4, reading passages with comprehension questions and a vocabulary word bank, and a storybook shelf of 8 illustrated stories split by class level (Class 4 stories run longer, with a "Challenge readers" tier and harder vocabulary). Kids listen to a page read aloud, then read it back themselves, and a reading buddy highlights words green or red as it listens.
+A maths and reading tutor for kids — maths worksheets for class 2 and class 4 with 3 difficulty levels each (Starter, Builder, Champion) that unlock as a child scores well, so they keep getting stronger instead of repeating the same problems forever; reading passages with comprehension questions and a vocabulary word bank; and a storybook shelf of 8 illustrated stories split by class level (Class 4 stories run longer, with a "Challenge readers" tier and harder vocabulary). Kids listen to a page read aloud, then read it back themselves, and a reading buddy highlights words green or red as it listens.
+
+Maths level progress is saved in the browser (`localStorage`), so it's remembered next time — each class level (2 and 4) tracks its own progress independently.
 
 ## Run it locally first (optional but recommended)
 

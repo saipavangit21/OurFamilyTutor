@@ -1,6 +1,6 @@
 # Family Learning Trail
 
-A maths and reading tutor for kids — maths worksheets for class 2 and class 4, plus reading passages with comprehension questions, a vocabulary word bank, and a "read aloud" practice mode that listens to your child read and highlights words they got right or should practice.
+A maths and reading tutor for kids — maths worksheets for class 2 and class 4, reading passages with comprehension questions and a vocabulary word bank, and a storybook shelf where kids can listen to a page read aloud and then read it back themselves, with a reading buddy that highlights words green or red as it listens.
 
 ## Run it locally first (optional but recommended)
 
@@ -40,12 +40,15 @@ Open the URL it prints (usually http://localhost:5173) to try it in your browser
 
 ## Important: microphone permission
 
-The "practice reading aloud" feature needs microphone access and only works in **Chrome or Edge** (desktop or Android). Once deployed with a real `https://` link (Vercel and Netlify both give you HTTPS automatically), the browser will prompt to allow the microphone the first time a child uses it — this must be allowed. It won't work over plain `http://`, but Vercel/Netlify links are always secure by default, so you're covered.
+The "read aloud" practice mode (used in both the reading journal and the storybook shelf) needs microphone access and only works in **Chrome or Edge** (desktop or Android). Once deployed with a real `https://` link (Vercel and Netlify both give you HTTPS automatically), the browser will prompt to allow the microphone the first time a child uses it — this must be allowed. It won't work over plain `http://`, but Vercel/Netlify links are always secure by default, so you're covered.
+
+The "Read this page to me" button in the storybook uses the browser's built-in text-to-speech and works everywhere, no microphone needed.
 
 ## Customizing later
 
 - Maths problem ranges: edit `genClass2` and `genClass4` in `src/App.jsx`.
 - Add more reading passages: extend the `PASSAGES` object in `src/App.jsx`.
+- Add more storybooks: extend the `STORYBOOKS` array in `src/App.jsx` — each story is a title, level, color, and a list of page texts.
 - Colors and fonts: edit the `COLORS` object and the Google Fonts import near the top of `src/App.jsx`.
 
 If you want help adding features later (more passages, a profile switcher for each kid, progress tracking over time), just ask.
